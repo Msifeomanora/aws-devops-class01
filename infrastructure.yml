@@ -14,12 +14,6 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
 
-  WebsiteBucket2:
-    Type: AWS::S3::Bucket
-
 Outputs:
   BucketName:
     Value: !Ref WebsiteBucket
-
-  SecondBucketName:
-    Value: !Ref WebsiteBucket2
