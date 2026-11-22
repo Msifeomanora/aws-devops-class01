@@ -1,8 +1,26 @@
-"scripts": {
-  "test": "jest",
-  "smoke": "node smoke-test.js",
-  "test:coverage": "jest --coverage --coverageThreshold={\"global\":{\"branches\":70,\"functions\":70,\"lines\":70,\"statements\":70}}",
-  "start": "node server.js",
-  "build": "echo No compilation required for this Node.js application",
-  "lint": "echo No lint configured"
+{
+  "name": "codedynasty",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "smoke": "node smoke-test.js",
+    "test:coverage": "jest --coverage --coverageThreshold='{\"global\":{\"branches\":70,\"functions\":70,\"lines\":70,\"statements\":70}}'",
+    "start": "node server.js",
+    "build": "echo No compilation required for this Node.js application",
+    "lint": "echo No lint configured"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-appconfigdata": "^3.1054.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "supertest": "^7.1.4"
+  }
 }
