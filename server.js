@@ -1,30 +1,57 @@
 require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const { refreshConfig, getConfig } = require('./appconfig');
 
-const app = express();
+function createApp(configProvider = getConfig) {
+  const app = express();
 
-app.get('/', (req, res) => {
-  const config = getConfig();
-  console.log('🔍 Config on request:', config);
+  app.get('/', (req, res) => {
+    const config = configProvider();
 
-  if (config.maintenance_mode) {
-    return res.sendFile(path.join(__dirname, 'public', 'maintenance.html'));
+    console.log('Config on request:', config);
+
+    if (config.maintenance_mode) {
+      return res.sendFile(
+        path.join(__dirname, 'public', 'maintenance.html')
+      );
+    }
+
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
+
+  app.use(express.static(path.join(__dirname, 'public')));
+
+  return app;
+}
+
+async function startServer() {
+  try {
+    await refreshConfig();
+
+    const app = createApp();
+    const PORT = process.env.PORT || 8080;
+
+    const refreshTimer = setInterval(() => {
+      refreshConfig().catch(err => {
+        console.error('AppConfig refresh failed:', err.message);
+      });
+    }, 30000);
+
+    refreshTimer.unref();
+
+    app.listen(PORT, () => {
+      console.log(`Running on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error('Failed to start:', err);
+    process.exitCode = 1;
   }
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+}
 
-app.use(express.static('public'));
+if (require.main === module) {
+  startServer();
+}
 
-const PORT = process.env.PORT || 8080;
-
-refreshConfig().then(() => {
-  setInterval(refreshConfig, 30_000);
-  app.listen(PORT, () => console.log(`🚀 Running on port ${PORT}`));
-}).catch(err => {
-  console.error('Failed to start:', err);
-  process.exit(1);
-});
-
-module.exports = app;
+module.exports = { createApp };

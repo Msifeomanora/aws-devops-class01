@@ -9,7 +9,8 @@ console.log('🔥 Running smoke tests...');
 console.log(`Testing server at http://${HOST}:${PORT}`);
 
 // Start the server
-const app = require('./server');
+const { createApp } = require('./server');
+const app = createApp();
 const server = app.listen(PORT, HOST, () => {
   console.log(`✅ Server started on port ${PORT}`);
   
