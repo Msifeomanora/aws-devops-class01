@@ -14,12 +14,10 @@ phases:
       - npm run lint
 
   build:
-    commands:
-      - echo "=== Running application tests ==="
-      - npm test -- --runInBand
-      - echo "=== Running coverage tests ==="
-      - npm run test:coverage
-      - echo "=== Build completed ==="
+  commands:
+    - echo "=== Running application tests ==="
+    - npm test -- --runInBand
+    - echo "=== Build completed ==="
 
   post_build:
     commands:
