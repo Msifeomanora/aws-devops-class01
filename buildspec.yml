@@ -14,16 +14,16 @@ phases:
       - npm run lint
 
   build:
-  commands:
-    - echo "=== Running application tests ==="
-    - npm test -- --runInBand
-    - echo "=== Build completed ==="
+    commands:
+      - echo "=== Running application tests ==="
+      - npm test -- --runInBand
+      - echo "=== Build completed ==="
 
   post_build:
     commands:
       - echo "=== Running smoke tests ==="
       - npm run smoke
-      - echo Build completed on `date`
+      - echo "Build completed on `date`"
 
 artifacts:
   files:
