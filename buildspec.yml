@@ -9,15 +9,14 @@ phases:
       - npm ci
 
   pre_build:
-  commands:
-    - echo "=== Running Jest tests and coverage check ==="
-    - npm test -- --coverage --coverageReporters=text
+    commands:
+      - echo "=== Running linter ==="
+      - npm run lint
 
   build:
     commands:
-      - echo "=== Running application tests ==="
-      - npm test -- --runInBand
-      - echo "=== Build completed ==="
+      - echo "=== Running Jest tests and coverage check ==="
+      - npm test -- --coverage --coverageReporters=text
 
   post_build:
     commands:
@@ -31,9 +30,6 @@ artifacts:
   exclude-paths:
     - node_modules/**/*
     - .git/**/*
-    - coverage/**/*
-    - .env
-    - .env.*
 
 cache:
   paths:
