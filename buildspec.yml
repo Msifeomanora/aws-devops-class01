@@ -15,8 +15,9 @@ phases:
 
   build:
     commands:
-      - this-command-does-not-exist
-      - npm run build
+      - echo "=== Running application tests ==="
+      - npm test -- --runInBand
+      - echo "=== Build completed ==="
 
   post_build:
     commands:
