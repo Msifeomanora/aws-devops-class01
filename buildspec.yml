@@ -9,9 +9,9 @@ phases:
       - npm ci
 
   pre_build:
-    commands:
-      - echo "=== Running linter ==="
-      - npm run lint
+  commands:
+    - echo "=== Running Jest tests and coverage check ==="
+    - npm test -- --coverage --coverageReporters=text
 
   build:
     commands:

@@ -1,14 +1,13 @@
 {
   "name": "codedynasty",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "jest",
     "smoke": "node smoke-test.js",
     "test:coverage": "jest --coverage",
     "start": "node server.js",
-    "build": "echo No compilation required for this Node.js application",
+    "build": "echo No compilation required",
     "lint": "echo No lint configured"
   },
   "keywords": [],
