@@ -26,15 +26,20 @@ function createApp(configProvider = getConfig) {
   return app;
 }
 
-async function startServer() {
+async function startServer({
+  refreshConfigFn = refreshConfig,
+  createAppFn = createApp,
+  setIntervalFn = setInterval,
+  processObj = process
+} = {}) {
   try {
-    await refreshConfig();
+    await refreshConfigFn();
 
-    const app = createApp();
-    const PORT = process.env.PORT || 8080;
+    const app = createAppFn();
+    const PORT = processObj.env.PORT || 8080;
 
-    const refreshTimer = setInterval(() => {
-      refreshConfig().catch(err => {
+    const refreshTimer = setIntervalFn(() => {
+      refreshConfigFn().catch(err => {
         console.error('AppConfig refresh failed:', err.message);
       });
     }, 30000);
@@ -54,4 +59,4 @@ if (require.main === module) {
   startServer();
 }
 
-module.exports = { createApp };
+module.exports = { createApp, startServer };

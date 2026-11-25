@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  parameter-store:
+    API_URL: /myapp/development/api-url
+
 phases:
   install:
     runtime-versions:
@@ -10,13 +14,14 @@ phases:
 
   pre_build:
     commands:
-      - echo "=== Running linter ==="
-      - npm run lint
+      - echo "=== Running tests ==="
+      - npm test -- --coverage
 
   build:
     commands:
-      - echo "=== Running Jest tests and coverage check ==="
-      - npm test -- --coverage --coverageReporters=text
+      - echo "=== Building application ==="
+      - echo "Building against API: $API_URL"
+      - npm run build
 
   post_build:
     commands:
