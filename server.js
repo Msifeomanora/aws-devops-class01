@@ -51,7 +51,7 @@ async function startServer({
     });
   } catch (err) {
     console.error('Failed to start:', err);
-    process.exitCode = 1;
+    processObj.exitCode = 1;
   }
 }
 
