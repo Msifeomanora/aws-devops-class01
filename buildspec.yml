@@ -44,3 +44,9 @@ artifacts:
 cache:
   paths:
     - 'node_modules/**/*'
+    
+reports:
+  MyAppTestReport:
+    files:
+      - 'test-results/junit.xml'
+    file-format: JUNITXML
