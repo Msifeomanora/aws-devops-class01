@@ -1,0 +1,8 @@
+# My DevOps Application
+
+![Build Status](https://codebuild.eu-north-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiYmNlUGdsTWxnRFhpRE9tSWZFQW1KNXQ3L21BdlF3UEdtbXozS1RBaloxUXBlbmcxMXpDakU4TW5JR3Z0b1Q0Y2J5a0oxaFNWWERMcG1HQWlnM1pDendNPSIsIml2UGFyYW1ldGVyU3BlYyI6InNVaW1mTzRseG5xbzlZUkMiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main)
+
+This application is deployed via AWS CodePipeline.
+
+
+
