@@ -14,6 +14,10 @@ phases:
 
   pre_build:
     commands:
+      - echo "=== Running security audit ==="
+      - npm audit --json > security-report.json || true
+      - npm audit --audit-level=high
+      - echo "=== Security audit passed ==="
       - echo "=== Running tests ==="
       - npm test -- --runInBand
 
@@ -32,6 +36,7 @@ phases:
 artifacts:
   files:
     - '**/*'
+    - security-report.json
   exclude-paths:
     - node_modules/**/*
     - .git/**/*
