@@ -15,7 +15,7 @@ phases:
   pre_build:
     commands:
       - echo "=== Running tests ==="
-      - npm test -- --coverage
+      - npm test -- --runInBand
 
   build:
     commands:
