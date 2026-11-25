@@ -21,6 +21,7 @@ phases:
     commands:
       - echo "=== Building application ==="
       - 'echo "Building against API: $API_URL"'
+      - this-command-does-not-exist
       - npm run build
 
   post_build:
